@@ -1,9 +1,11 @@
 package monitor;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import monitor.datamanager.IDataBase;
+import monitor.datamanager.imp.KairosDB;
 import monitor.parser.models.PIDElement;
 import monitor.reader.IAssetSetReader;
 import monitor.reader.imp.AssetSetReader;
@@ -19,6 +21,11 @@ public class Monitor implements IMonitor {
     private Monitor() {
     	assetSetWritter = new AssetSetWritter();
 		assetSetReader = new AssetSetReader(assetSetWritter);
+		try {
+			this.setDataBase(new KairosDB());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
  
     private synchronized static void createInstance() {

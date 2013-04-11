@@ -46,6 +46,9 @@ public class TorqueParser implements IParser {
 	}
 
 	private String parseToSimpleUnit(String unit) {		
+		if (unit == null) {
+			unit = "";
+		}
 		unit = unit.trim();
 		if (unit.length() == 0) {
 			return unit + "N/D";

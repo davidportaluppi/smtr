@@ -72,5 +72,24 @@ public class MonitorTest {
 		String jsonReference = Resources.toString(Resources.getResource("response_get.json"), Charsets.ISO_8859_1);
 		assertThat(json , equalTo(jsonReference));
 	}
-
+	
+	
+	@Test	
+	public void testGetHistory() throws IOException {
+		// Load json file to map for testing
+		String json = Resources.toString(Resources.getResource("params_get.json"), Charsets.UTF_8);
+		
+		
+		
+		ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+				
+		// Read testing files
+		Map<String, List<String>> tags = mapper.readValue(json, new TypeReference<Map<String, List<String>>>() { });				
+		Map<String, Map<String, PIDElement>>  response = monitor.getValues(tags);
+		
+		json = mapper.writeValueAsString(response);
+		
+		String jsonReference = Resources.toString(Resources.getResource("response_history.json"), Charsets.ISO_8859_1);
+		assertThat(json , equalTo(jsonReference));
+	}
 }
