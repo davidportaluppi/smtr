@@ -1,0 +1,84 @@
+[	
+	{
+		// #### Velocidad(GPS) ####
+		"kff1001" : "0.0",
+		"defaultUnitff1001" : "km/h",
+		"userUnitff1001" : "km/h",
+
+		// #### Longitud ####
+		"kff1005" : "[-60.74108666, -60.74108666]",
+		"defaultUnitff1005" : "[°, °]",
+		"userUnitff1005" : "[°, °]",
+
+		// #### Latitud ####
+		"kff1006" : "[-32.73764514, -32.73764514]",
+		"defaultUnitff1006" : "[°, °]",
+		"userUnitff1006" : "[°, °]",
+		
+		// #### Email (en torque) se va a usar para identificar el ActivoMovil ####
+		"eml" : "358518041701292",
+		// #### Time ####
+		"time" : "1",
+		// #### puede referirse al identificador del ActivoMovil ####
+		"id" : "EZF305",
+		// #### Version de torque?? ####
+		"v" : "5",
+		// #### Time ####
+		"assetID" : "EZF305"
+	},
+	
+	{
+		// #### Velocidad(GPS) ####
+		"kff1001" : "0.0",
+		"defaultUnitff1001" : "km/h",
+		"userUnitff1001" : "km/h",
+
+		// #### Longitud ####
+		"kff1005" : "[-60.74108666, -60.74108666]",
+		"defaultUnitff1005" : "[°, °]",
+		"userUnitff1005" : "[°, °]",
+
+		// #### Latitud ####
+		"kff1006" : "[-32.73764514, -32.73764514]",
+		"defaultUnitff1006" : "[°, °]",
+		"userUnitff1006" : "[°, °]",
+		
+		// #### Email (en torque) se va a usar para identificar el ActivoMovil ####
+		"eml" : "358518041701292",
+		// #### Time ####
+		"time" : "2",
+		// #### puede referirse al identificador del ActivoMovil ####
+		"id" : "EZF305",
+		// #### Version de torque?? ####
+		"v" : "5",
+		// #### Time ####
+		"assetID" : "EZF305"
+	},
+	{
+		// #### Velocidad(GPS) ####
+		"kff1001" : "0.0",
+		"defaultUnitff1001" : "km/h",
+		"userUnitff1001" : "km/h",
+
+		// #### Longitud ####
+		"kff1005" : "[-60.74108666, -60.74108666]",
+		"defaultUnitff1005" : "[°, °]",
+		"userUnitff1005" : "[°, °]",
+
+		// #### Latitud ####
+		"kff1006" : "[-32.73764514, -32.73764514]",
+		"defaultUnitff1006" : "[°, °]",
+		"userUnitff1006" : "[°, °]",
+		
+		// #### Email (en torque) se va a usar para identificar el ActivoMovil ####
+		"eml" : "358518041701292",
+		// #### Time ####
+		"time" : "3",
+		// #### puede referirse al identificador del ActivoMovil ####
+		"id" : "EZF305",
+		// #### Version de torque?? ####
+		"v" : "5",
+		// #### Time ####
+		"assetID" : "EZF305"
+	}
+]

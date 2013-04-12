@@ -3,6 +3,7 @@ package monitor.writter;
 import java.util.Map;
 import java.util.Observer;
 
+import monitor.datamanager.IDataBase;
 import monitor.parser.models.PIDElement;
 
 public interface IAssetWritter {
@@ -14,4 +15,6 @@ public interface IAssetWritter {
 	public Map<String, PIDElement> getAssetCache();
 	
 	public long getLastUpdate();
+
+	public IDataBase getDataBase();
 }

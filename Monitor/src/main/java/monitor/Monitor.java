@@ -7,6 +7,7 @@ import java.util.Map;
 import monitor.datamanager.IDataBase;
 import monitor.datamanager.imp.KairosDB;
 import monitor.parser.models.PIDElement;
+import monitor.parser.models.PIDHistoryElement;
 import monitor.reader.IAssetSetReader;
 import monitor.reader.imp.AssetSetReader;
 import monitor.writter.IAssetSetWritter;
@@ -60,5 +61,13 @@ public class Monitor implements IMonitor {
 	public boolean setDataBase(IDataBase db) {
 		assetSetWritter.setDataBase(db);
 		return true;
+	}
+
+	@Override
+	public Map<String, Map<String, PIDHistoryElement>> getHistories(
+			Map<String, List<String>> tagsByAsset,  Long upperTime, Long spanTime) {
+		
+		Map<String, Map<String, PIDHistoryElement>> historiesByAssetResult = assetSetReader.getHistories(tagsByAsset, upperTime, spanTime);
+		return historiesByAssetResult;
 	}
 }

@@ -109,4 +109,9 @@ public class AssetWritter extends Observable implements IAssetWritter {
 	public Map<String, PIDElement> getAssetCache() {
 		return this.assetCache;
 	}
+
+	@Override
+	public IDataBase getDataBase() {
+		return this.dataBase;
+	}
 }
