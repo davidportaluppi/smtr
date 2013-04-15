@@ -41,5 +41,12 @@ class TorqueController {
 	
 	def index() {
 		
-	}	
+	}
+	
+	def history() {
+		// Obtener del monitor el gistory de acuerdo a los valores enviados en el reques.
+		String jsonRequest = params.get("jsonQuery").toString();
+		String jsonResponse = Utils.getHistories(jsonRequest);		
+		render jsonResponse
+	}
 }

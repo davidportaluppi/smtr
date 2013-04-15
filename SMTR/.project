@@ -28,20 +28,5 @@
 			<type>2</type>
 			<locationURI>GRAILS_ROOT/2.2.1/projects/SMTR/plugins</locationURI>
 		</link>
-		<link>
-			<name>DataManager</name>
-			<type>2</type>
-			<location>E:/Mis Cosas/repositorios/git/smtr/DataManager/src/main/java</location>
-		</link>
-		<link>
-			<name>Monitor</name>
-			<type>2</type>
-			<location>E:/Mis Cosas/repositorios/git/smtr/Monitor/src/main/java</location>
-		</link>
-		<link>
-			<name>Parse</name>
-			<type>2</type>
-			<location>E:/Mis Cosas/repositorios/git/smtr/Parser/src/main/java</location>
-		</link>
 	</linkedResources>
 </projectDescription>

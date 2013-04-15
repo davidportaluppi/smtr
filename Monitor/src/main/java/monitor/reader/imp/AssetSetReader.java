@@ -63,7 +63,7 @@ public class AssetSetReader implements IAssetSetReader {
 
 	@Override
 	public Map<String, Map<String, PIDHistoryElement>> getHistories(
-			Map<String, List<String>> tagsByAsset, long upperTime, long spanTime){
+			Map<String, List<String>> tagsByAsset, Long upperTime, Long spanTime){
 		
 		Map<String, Map<String, PIDHistoryElement>> historiesByAsset = new HashMap<String, Map<String,PIDHistoryElement>>();
 		String assetID = "";		

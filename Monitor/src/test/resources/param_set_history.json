@@ -24,7 +24,11 @@
 		// #### Version de torque?? ####
 		"v" : "5",
 		// #### Time ####
-		"assetID" : "EZF305"
+		"assetID" : "EZF305",
+		// #### Presicion GPS ####
+		"kff1239" : 23,
+		"defaultUnitff1239" : "m",
+		"userUnitff1239" : "m"		
 	},
 	
 	{
@@ -52,7 +56,12 @@
 		// #### Version de torque?? ####
 		"v" : "5",
 		// #### Time ####
-		"assetID" : "EZF305"
+		"assetID" : "EZF305",
+		
+		// #### Presicion GPS ####
+		"kff1239" : 23,
+		"defaultUnitff1239" : "m",
+		"userUnitff1239" : "m"
 	},
 	{
 		// #### Velocidad(GPS) ####
@@ -79,6 +88,11 @@
 		// #### Version de torque?? ####
 		"v" : "5",
 		// #### Time ####
-		"assetID" : "EZF305"
+		"assetID" : "EZF305",
+		
+		// #### Presicion GPS ####
+		"kff1239" : 23,
+		"defaultUnitff1239" : "m",
+		"userUnitff1239" : "m"	
 	}
 ]

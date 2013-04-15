@@ -10,5 +10,5 @@ public interface IAssetSetReader {
 	public Map<String, Map<String, PIDElement>> getValues(Map<String, List<String>> tags);
 
 	public Map<String, Map<String, PIDHistoryElement>> getHistories(
-			Map<String, List<String>> tagsByAsset, long upperTime, long spanTime);
+			Map<String, List<String>> tagsByAsset, Long upperTime, Long spanTime);
 }

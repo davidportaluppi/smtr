@@ -457,6 +457,7 @@
 		var lat = r["EZF305"]["ff1006"].value;		
 		var vel = r["EZF305"]["ff1001"].value;
 		var ace = r["EZF305"]["ff1223"].value;
+		if(isNaN(lon)){return}
 		vel = vel.toFixed(2);
 		ace = ace.toFixed(2);
 		$("#ff1001").text(vel);
@@ -516,7 +517,65 @@
 		});
 	}
 	
-	$(function() {addCoor()});
+	function getHistory() {
+		var minutes = 1000*60;
+		var input = {"spanTime": 8*minutes, "upperTime": -1, "assets": {"EZF305":["ff1005","ff1006", "ff1001", "ff1223"]}};
+		
+		$.ajax({
+			url: 'history',
+			type: 'POST',
+			dataType: 'json',				
+			data: "jsonQuery=" + JSON.stringify(input),
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			success: function (data) {
+				console.log(data);	
+				if(data["EZF305"]["ff1005"] == undefined) {
+					addCoor();
+					return;
+				}			
+				// dibujo inicio
+				var lonArray = data["EZF305"]["ff1005"]["data"];
+				var latArray = data["EZF305"]["ff1006"]["data"];		
+				/*
+				var vel = data["EZF305"]["ff1001"]["data"];
+				var ace = data["EZF305"]["ff1223"]["data"];
+				*/
+				flightPlanCoordinates = []
+				for(var i in lonArray){
+					var lon = lonArray[i].value;
+					var lat = latArray[i].value;					
+					var coor = new google.maps.LatLng(lat, lon);
+					flightPlanCoordinates.push(coor)
+				}																
+				
+				flightPath.setMap(null);
+				flightPath = new google.maps.Polyline({
+					path: flightPlanCoordinates,
+					strokeColor: "#0000FF",
+					strokeOpacity: 1.0,
+					strokeWeight: 3
+				});
+
+				flightPath.setMap(map);
+				
+				// Set bounds
+				var bounds = new google.maps.LatLngBounds ();
+				for (var i = 0, LtLgLen = flightPlanCoordinates.length; i < LtLgLen; i++) {
+					bounds.extend (flightPlanCoordinates[i]);
+				}
+				map.fitBounds(bounds);
+				
+				addCoor();
+				// actualizo graficos				
+			},
+			error: function(a) {
+				console.log(a);
+				alert("error");		
+			}
+		});
+	}
+	
+	$(function() {getHistory()});
 </script>
 </body>
 

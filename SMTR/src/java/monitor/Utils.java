@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import monitor.parser.models.PIDElement;
+import monitor.parser.models.PIDHistoryElement;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -33,4 +34,32 @@ public class Utils {
 		
 		return null;
 	}	
+	
+	public static String getHistories(String jsonRequest) {
+		ObjectMapper mapper = new ObjectMapper();		
+		HistoryRequest historyRequest = null;
+		try {			
+			historyRequest = mapper.readValue(jsonRequest, new TypeReference<HistoryRequest>() { });
+			if (historyRequest.getUpperTime() == -1) {
+				historyRequest.setUpperTime(null);
+			}
+			Long upperTime = historyRequest.getUpperTime();
+			Long spanTime = historyRequest.getSpanTime();
+			Map<String, Map<String, PIDHistoryElement>>  response = Monitor.getInstance().getHistories(historyRequest.getAssets(), upperTime, spanTime);
+			
+			String jsonResponse = mapper.writeValueAsString(response);
+			return jsonResponse;
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 }

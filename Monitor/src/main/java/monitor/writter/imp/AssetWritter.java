@@ -12,6 +12,10 @@ import monitor.parser.IParser;
 import monitor.parser.models.AssetMeasurements;
 import monitor.parser.models.PIDElement;
 import monitor.parser.torque.TorqueParser;
+import monitor.ruleengine.IRuleEngine;
+import monitor.ruleengine.location.LocationRuleEngine;
+import monitor.ruleengine.models.Rule;
+import monitor.ruleengine.models.RuleResponse;
 import monitor.writter.IAssetWritter;
 
 import org.apache.commons.logging.Log;
@@ -20,6 +24,8 @@ import org.apache.commons.logging.LogFactory;
 
 public class AssetWritter extends Observable implements IAssetWritter {
 	private static Log log = LogFactory.getLog(AssetWritter.class);
+	private IParser parser = new TorqueParser();
+	private Map<String, IRuleEngine> rules = new HashMap<String, IRuleEngine>();
 	/**
 	 * AssetMeasurements assetCache
 	 */
@@ -28,15 +34,16 @@ public class AssetWritter extends Observable implements IAssetWritter {
 	private IDataBase dataBase;
 	public AssetWritter(String assetID, IDataBase dataBase) {
 		this.dataBase = dataBase;
+		rules.put("LOCATION", new LocationRuleEngine());
 	}
 
 	@Override
 	public boolean setValues(Map<String, String> params) {
 		// Parse params to AssetMessuraments
-		IParser torqueParser = new TorqueParser();
-		AssetMeasurements assetMeasurements = torqueParser.parse(params);
+		AssetMeasurements assetMeasurements = parser.parse(params);
 		
 		List<PIDElement> newValues = assetMeasurements.getMeasurements();
+		applyRuleEngine(newValues);
 		
 		long t1 = assetMeasurements.getTime();		
 		Map<String, PIDElement> changeTags = new HashMap<String, PIDElement>();
@@ -46,6 +53,7 @@ public class AssetWritter extends Observable implements IAssetWritter {
 			
 			// Build new pid element to save un cache
 			PIDElement newPID = new PIDElement(k);
+					
 			newPID.setValue(pid.getValue());
 			newPID.setDefaultUnit(pid.getDefaultUnit());			
 			newPID.setUserUnit(pid.getUserUnit());
@@ -84,6 +92,34 @@ public class AssetWritter extends Observable implements IAssetWritter {
 		return true;
 	}
 	
+	private void applyRuleEngine(List<PIDElement> newValues) {
+		Map<String, Object> locationPIDsValues = new HashMap<String, Object>();
+		Map<String, PIDElement> locationPIDsObjects = new HashMap<String, PIDElement>();
+		for (PIDElement pidElement : newValues) {
+			
+			// Build Location rule engine models
+			String key = pidElement.getId();
+			if (key.equalsIgnoreCase("ff1006") || key.equalsIgnoreCase("ff1005") || key.equalsIgnoreCase("ff1239")) {
+				
+				locationPIDsObjects.put(key, pidElement);
+				
+				locationPIDsValues.put(key, pidElement.getValue());
+			}
+		}
+		
+		// Appy Location Rule Engine
+		Rule rule = new Rule();
+		rule.setVariables(locationPIDsValues);
+		RuleResponse ruleResponse= rules.get("LOCATION").applyRule(rule);					
+		
+		// en reposo
+		if (ruleResponse.getActionCode() == 0) {
+			for (String key : locationPIDsObjects.keySet()) {
+				locationPIDsObjects.get(key).setValue(this.assetCache.get(key).getValue());				
+			}
+		}
+	}
+
 	private void sendToDataBase(AssetMeasurements assetMeasurements) {
 		// Enviar datos a la DB
 		try {
