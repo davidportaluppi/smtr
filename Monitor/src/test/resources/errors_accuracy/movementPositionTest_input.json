@@ -1,0 +1,66 @@
+[	
+	{
+		// #### Velocidad(GPS) ####
+		"kff1001" : "0.0",
+		"defaultUnitff1001" : "km/h",
+		"userUnitff1001" : "km/h",
+
+		// #### Longitud ####
+		"kff1005" : "[-60.65749168395996, -60.65749168395996]",
+		"defaultUnitff1005" : "[°, °]",
+		"userUnitff1005" : "[°, °]",
+
+		// #### Latitud ####
+		"kff1006" : "[-32.95390830685836, -32.95390830685836]",
+		"defaultUnitff1006" : "[°, °]",
+		"userUnitff1006" : "[°, °]",
+		
+		// #### Email (en torque) se va a usar para identificar el ActivoMovil ####
+		"eml" : "358518041701292",
+		// #### Time ####
+		"time" : "1",
+		// #### puede referirse al identificador del ActivoMovil ####
+		"id" : "EZF305",
+		// #### Version de torque?? ####
+		"v" : "5",
+		// #### Time ####
+		"assetID" : "EZF305",
+		// #### Presicion GPS ####
+		"kff1239" : "23",
+		"defaultUnitff1239" : "m",
+		"userUnitff1239" : "m"		
+	},
+	
+	{
+		// #### Velocidad(GPS) ####
+		"kff1001" : "0.0",
+		"defaultUnitff1001" : "km/h",
+		"userUnitff1001" : "km/h",
+
+		// #### Longitud ####
+		"kff1005" : "[-60.661654472351074, -60.661654472351074]",
+		"defaultUnitff1005" : "[°, °]",
+		"userUnitff1005" : "[°, °]",
+
+		// #### Latitud ####
+		"kff1006" : "[-32.95347617827523, -32.95347617827523]",
+		"defaultUnitff1006" : "[°, °]",
+		"userUnitff1006" : "[°, °]",
+		
+		// #### Email (en torque) se va a usar para identificar el ActivoMovil ####
+		"eml" : "358518041701292",
+		// #### Time ####
+		"time" : "2",
+		// #### puede referirse al identificador del ActivoMovil ####
+		"id" : "EZF305",
+		// #### Version de torque?? ####
+		"v" : "5",
+		// #### Time ####
+		"assetID" : "EZF305",
+		
+		// #### Presicion GPS ####
+		"kff1239" : 23,
+		"defaultUnitff1239" : "m",
+		"userUnitff1239" : "m"
+	}
+]
